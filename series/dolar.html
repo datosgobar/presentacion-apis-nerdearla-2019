@@ -1,0 +1,17 @@
+<script type='text/javascript' src='https://cdn.jsdelivr.net/gh/datosgobar/series-tiempo-ar-explorer@ts_components_2.6.7/dist/js/components.js'></script>
+<link rel='stylesheet' type='text/css' href='https://cdn.jsdelivr.net/gh/datosgobar/series-tiempo-ar-explorer@ts_components_2.6.7/dist/css/components.css'/>
+<div id="root"></div>
+<div id="root-card"></div>
+<script>
+    window.onload = function() {
+        TSComponents.Graphic.render('root', {
+            graphicUrl: "https://apis.datos.gob.ar/series/api/series/?ids=168.1_T_CAMBIOR_D_0_0_26&limit=5000",
+            title: "Tipo de Cambio BNA (Vendedor)",
+            source: "Fuente: BCRA, MAE, Rofex"
+        })
+        TSComponents.Card.render('root-card', {
+            serieId: "168.1_T_CAMBIOR_D_0_0_26",
+        })
+    }
+</script>
+
