@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Tablero de indicadores</title>
+    <!-- Bootstrap: CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Dependencias de componentes de series de tiempo: Fontawesome -->
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" media="all" />
+    <!-- Componentes de series de tiempo: CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/datosgobar/series-tiempo-ar-explorer@ts_components_2.6.7/dist/css/components.css" type="text/css">
+    <!-- Componentes de series de tiempo: JS -->
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/datosgobar/series-tiempo-ar-explorer@ts_components_2.6.7/dist/js/components.js'></script>
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Bootstrap: JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <br>
+    <div class="container">
+        <h3 style="text-align: center;">Inflación</h3>
+        <br>
+        <div class="row panels-row">
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="center-block cardWrapper" id='ipc-mensual'></div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="center-block cardWrapper" id='ipc-interanual'> </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6">
+                <div class="center-block full-width" style="height: 350px;" id='ipc-evolucion'></div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <h3 style="text-align: center;">Tipo de Cambio BNA (Vendedor)</h3>
+        <br>
+        <div class="row panels-row">
+            <div class="col-xs-10 col-sm-10 col-md-2">
+            	<h4 style="display: none;">Período</h4>
+            </div>
+            <div class="col-xs-10 col-sm-10 col-md-5">
+                <div class="container">
+                    <div class="row panels-row">
+                        <div style="text-align: center;" class="col-xs-12 col-sm-6 col-md-6"><h4>Mínimo</h4></div>
+                        <div style="text-align: center;" class="col-xs-12 col-sm-6 col-md-6"><h4>Promedio</h4></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-10 col-sm-10 col-md-5">
+                <div class="container">
+                    <div class="row panels-row">
+                        <div style="text-align: center;" class="col-xs-12 col-sm-6 col-md-6"><h4>Máximo</h4></div>
+                        <div style="text-align: center;" class="col-xs-12 col-sm-6 col-md-6"><h4>Último valor</h4></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row panels-row">
+            <div class="col-xs-8 col-sm-8 col-md-2" style="text-align: right; margin: auto;">
+            	<h4>Mes</h4>
+            </div>
+            <div class="col-xs-10 col-sm-10 col-md-5">
+                <div class="container">
+                    <div class="row panels-row">
+                        <div class="col-xs-12 col-sm-6 col-md-6 cardWrapper" id='tcbna-minimo-mensual'></div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 cardWrapper" id='tcbna-promedio-mensual'></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-10 col-sm-10 col-md-5">
+                <div class="container">
+                    <div class="row panels-row">
+                        <div class="col-xs-12 col-sm-6 col-md-6 cardWrapper" id='tcbna-maximo-mensual'></div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 cardWrapper" id='tcbna-cierre-mensual'></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row panels-row">
+            <div class="col-xs-8 col-sm-8 col-md-2" style="text-align: right; margin: auto;">
+            	<h4>Trimestre</h4>
+            </div>
+            <div class="col-xs-10 col-sm-10 col-md-5">
+                <div class="container">
+                    <div class="row panels-row">
+                        <div class="col-xs-12 col-sm-6 col-md-6 cardWrapper" id='tcbna-minimo-trimestral'></div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 cardWrapper" id='tcbna-promedio-trimestral'></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-10 col-sm-10 col-md-5">
+                <div class="container">
+                    <div class="row panels-row">
+                        <div class="col-xs-12 col-sm-6 col-md-6 cardWrapper" id='tcbna-maximo-trimestral'></div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 cardWrapper" id='tcbna-cierre-trimestral'></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row panels-row">
+            <div class="col-xs-8 col-sm-8 col-md-2" style="text-align: right; margin: auto;">
+            	<h4>Año</h4>
+            </div>
+            <div class="col-xs-10 col-sm-10 col-md-5">
+                <div class="container">
+                    <div class="row panels-row">
+                        <div class="col-xs-12 col-sm-6 col-md-6 cardWrapper" id='tcbna-minimo-anual'></div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 cardWrapper" id='tcbna-promedio-anual'></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-10 col-sm-10 col-md-5">
+                <div class="container">
+                    <div class="row panels-row">
+                        <div class="col-xs-12 col-sm-6 col-md-6 cardWrapper" id='tcbna-maximo-anual'></div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 cardWrapper" id='tcbna-cierre-anual'></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+// COLORES SUGERIDOS "#0072BB","#2E7D33","#C62828","#F9A822","#6A1B99", "#EC407A","#C2185B","#6A1B99","#039BE5","#6EA100"
+
+// PRECIOS
+TSComponents.Card.render('ipc-mensual', {
+    serieId: '148.3_INIVELNAL_DICI_M_26:percent_change',
+    hasChart: "small",
+    // color: "#C62828",
+    color: "#0072BB",
+    title: "IPC mensual"
+})
+
+TSComponents.Card.render('ipc-interanual', {
+    serieId: '148.3_INIVELNAL_DICI_M_26:percent_change_a_year_ago',
+    hasChart: "small",
+    // color: "#F9A822",
+    color: "#2E7D33",
+    title: "IPC interanual"
+})
+
+TSComponents.Graphic.render('ipc-evolucion', {
+    graphicUrl: "https://apis.datos.gob.ar/series/api/series?ids=148.3_INIVELNAL_DICI_M_26:percent_change,148.3_INIVELNAL_DICI_M_26:percent_change_a_year_ago&start_date=2018",
+    colors: [0, 1],
+    chartTypes: {
+        "148.3_INIVELNAL_DICI_M_26:percent_change": "column",
+        "148.3_INIVELNAL_DICI_M_26:percent_change_a_year_ago": "line"
+    },
+    seriesAxis: {
+        "148.3_INIVELNAL_DICI_M_26:percent_change": "right",
+        "148.3_INIVELNAL_DICI_M_26:percent_change_a_year_ago": "left"
+    },
+    datePickerEnabled: false,
+    displayUnits: false,
+    // title: "IPC",
+    zoom: false,
+    navigator: false,
+    legendLabel: {
+        "148.3_INIVELNAL_DICI_M_26:percent_change": "IPC (% mensual)",
+        "148.3_INIVELNAL_DICI_M_26:percent_change_a_year_ago": "IPC (% interanual)"
+    }
+})
+
+// TIPO DE CAMBIO
+TSComponents.Card.render('tcbna-cierre-mensual', {
+    serieId: '168.1_T_CAMBIOR_D_0_0_26:end_of_period',
+    collapse: "month",
+    color: "#C62828",
+    hasChart: "none",
+    links: "none",
+    units: "",
+    source: "",
+    title: ""
+})
+
+TSComponents.Card.render('tcbna-cierre-trimestral', {
+    serieId: '168.1_T_CAMBIOR_D_0_0_26:end_of_period',
+    collapse: "quarter",
+    color: "#C62828",
+    hasChart: "none",
+    links: "none",
+    units: "",
+    source: "",
+    title: ""
+})
+
+TSComponents.Card.render('tcbna-cierre-anual', {
+    serieId: '168.1_T_CAMBIOR_D_0_0_26:end_of_period',
+    collapse: "year",
+    hasChart: "none",
+    color: "#C62828",
+    links: "none",
+    units: "",
+    source: "",
+    title: ""
+})
+TSComponents.Card.render('tcbna-promedio-mensual', {
+    serieId: '168.1_T_CAMBIOR_D_0_0_26',
+    collapse: "month",
+    color: "#F9A822",
+    hasChart: "none",
+    links: "none",
+    units: "",
+    source: "",
+    title: ""
+})
+
+TSComponents.Card.render('tcbna-promedio-trimestral', {
+    serieId: '168.1_T_CAMBIOR_D_0_0_26',
+    collapse: "quarter",
+    color: "#F9A822",
+    hasChart: "none",
+    links: "none",
+    units: "",
+    source: "",
+    title: ""
+})
+
+TSComponents.Card.render('tcbna-promedio-anual', {
+    serieId: '168.1_T_CAMBIOR_D_0_0_26',
+    collapse: "year",
+    hasChart: "none",
+    color: "#F9A822",
+    links: "none",
+    units: "",
+    source: "",
+    title: ""
+})
+TSComponents.Card.render('tcbna-minimo-mensual', {
+    serieId: '168.1_T_CAMBIOR_D_0_0_26:min',
+    collapse: "month",
+    color: "#6A1B99",
+    hasChart: "none",
+    links: "none",
+    units: "",
+    source: "",
+    title: ""
+})
+
+TSComponents.Card.render('tcbna-minimo-trimestral', {
+    serieId: '168.1_T_CAMBIOR_D_0_0_26:min',
+    collapse: "quarter",
+    color: "#6A1B99",
+    hasChart: "none",
+    links: "none",
+    units: "",
+    source: "",
+    title: ""
+})
+
+TSComponents.Card.render('tcbna-minimo-anual', {
+    serieId: '168.1_T_CAMBIOR_D_0_0_26:min',
+    collapse: "year",
+    hasChart: "none",
+    color: "#6A1B99",
+    links: "none",
+    units: "",
+    source: "",
+    title: ""
+})
+TSComponents.Card.render('tcbna-maximo-mensual', {
+    serieId: '168.1_T_CAMBIOR_D_0_0_26:max',
+    collapse: "month",
+    color: "#EC407A",
+    hasChart: "none",
+    links: "none",
+    units: "",
+    source: "",
+    title: ""
+})
+
+TSComponents.Card.render('tcbna-maximo-trimestral', {
+    serieId: '168.1_T_CAMBIOR_D_0_0_26:max',
+    collapse: "quarter",
+    color: "#EC407A",
+    hasChart: "none",
+    links: "none",
+    units: "",
+    source: "",
+    title: ""
+})
+
+TSComponents.Card.render('tcbna-maximo-anual', {
+    serieId: '168.1_T_CAMBIOR_D_0_0_26:max',
+    collapse: "year",
+    hasChart: "none",
+    color: "#EC407A",
+    links: "none",
+    units: "",
+    source: "",
+    title: ""
+})
+</script>
+
+</html>
